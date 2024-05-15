@@ -1,0 +1,31 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:latest'
+    shm_size: 1g
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'db:/var/lib/postgresql/data'
+  api-service:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - '5000:5000'
+    restart: always
+    volumes:
+      - /app/node_modules
+      - './api-service:/app'
+    depends_on:
+      - postgres
+    environment:
+      - PORT=5000
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
+volumes:
+  db: null

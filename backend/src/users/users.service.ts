@@ -8,7 +8,7 @@ export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
   async create(createUserDto: CreateUserDto) {
     return this.prisma.user.create({
-      data: createUserDto,  
+      data: createUserDto,
     });
   }
 
@@ -16,7 +16,7 @@ export class UsersService {
     return this.prisma.user.findMany(); //user is the model name
   }
 
-  findOne(id?: string) {
+  findOne(id: string) {
     return this.prisma.user.findUnique({
       where: { id },
     });
@@ -24,8 +24,8 @@ export class UsersService {
 
   update(updateUserDto: UpdateUserDto, id: string) {
     return this.prisma.user.update({
-      where: { id }, 
-      data: updateUserDto
+      where: { id },
+      data: updateUserDto,
     });
   }
 

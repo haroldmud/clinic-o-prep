@@ -11,6 +11,7 @@ async function bootstrap() {
     .setTitle('Management API') // Set the title of the API
     .setDescription('Management API description') // Set the description of the API
     .setVersion('0.1') // Set the version of the API
+    .addBearerAuth() // Add a bearer token authentication
     .build(); // Build the document
 
   // Create a Swagger document using the application instance and the document configuration
